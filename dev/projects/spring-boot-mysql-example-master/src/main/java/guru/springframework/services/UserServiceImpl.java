@@ -4,6 +4,8 @@ import guru.springframework.domain.User;
 import guru.springframework.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
+    Logger logger = LogManager.getLogger(UserServiceImpl.class);
+
     @Autowired
     private UserRepository userRepository;
     @Override
@@ -24,6 +28,8 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         List<User> target = new ArrayList<>();
         userRepository.findAll().forEach(target::add);
+        logger.info("Fetching all users in info {}", 3);
+        logger.debug("Fetching all users in debug{}", 3);
         return target;
     }
 

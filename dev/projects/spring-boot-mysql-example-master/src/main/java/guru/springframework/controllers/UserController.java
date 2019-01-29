@@ -3,6 +3,8 @@ package guru.springframework.controllers;
 import guru.springframework.domain.Note;
 import guru.springframework.domain.User;
 import guru.springframework.services.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +21,16 @@ import java.util.Arrays;
  */
 @Controller
 public class UserController {
+    Logger logger = LogManager.getLogger(UserController.class);
+
+
     @Autowired
     private UserService userService;
 
     @RequestMapping("/")
     public String redirToList(Model model){
         model.addAttribute("users", userService.getAllUsers());
+        logger.debug("fetching users in controller {}, {}" + "one", "two");
         return "product/users";
     }
 

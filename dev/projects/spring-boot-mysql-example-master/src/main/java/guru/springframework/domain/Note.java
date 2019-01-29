@@ -40,7 +40,6 @@ public class Note {
 
     @Id
     @GeneratedValue
-
     private int noteId;
     private String noteContent;
     @ManyToOne()
